@@ -6,6 +6,7 @@ var Tasks = []models.Task{
 	{ID: 1, Title: "Learn Go", Done: false},
 	{ID: 2, Title: "Build API", Done: false},
 }
+var nextID = len(Tasks) + 1
 
 func GetAllTasks() []models.Task {
 	return Tasks
@@ -21,11 +22,11 @@ func GetTaskByID(id int) *models.Task {
 }
 
 func AddTask(task models.Task) models.Task {
-	task.ID = len(Tasks) + 1
+	task.ID = nextID
+	nextID++
 	Tasks = append(Tasks, task)
 	return task
 }
-
 func UpdateTask(id int, updatedTask models.Task) *models.Task {
 	for i, t := range Tasks {
 		if t.ID == id {
